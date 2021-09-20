@@ -26,6 +26,8 @@ void AConeActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	TestImplementableFunc(76);
+
 	//setting default values based on location of object
 	const FVector Location = GetActorLocation();
 	CurrentZ = Location.Z;
@@ -33,6 +35,27 @@ void AConeActor::BeginPlay()
 	MaxHeight = Location.Z + Max;
 	bIsUp = true;
 	
+}
+
+void AConeActor::TestInputOutput(const int32 InVal, AConeActor*& ConeActor, int32& OutVal1, int32& OutVal2)
+{
+	OutVal1 = InVal;
+	OutVal2 = InVal;
+}
+
+void AConeActor::TestFunc(const int32 Val)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Test Func Called with value %d"), Val);
+}
+
+int32 AConeActor::TestPureFunc()
+{
+	return 25;
+}
+
+void AConeActor::Explode_Implementation()
+{
+	this->Destroy();
 }
 
 // Called every frame
@@ -59,6 +82,7 @@ void AConeActor::Tick(float DeltaTime)
 
 	if (CurrentZ > MaxHeight)
 	{
+		Explode();
 		bIsUp = false;
 	}
 	else if (CurrentZ < MinHeight) {

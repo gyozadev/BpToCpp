@@ -50,7 +50,27 @@ protected:
 
 
 public:	
+
+	UFUNCTION(BlueprintCallable, Category = "Cone Functions")
+		void TestInputOutput(const int32 InVal, AConeActor*& ConeActor, int32& OutVal1, int32& OutVal2);
+
+
+	UFUNCTION(BlueprintCallable, Category = "Cone Functions")
+		void TestFunc(const int32 Val);
+
+	UFUNCTION(BlueprintPure, Category = "Cone Functions", meta = (HideSelfPin = "true"))
+		int32 TestPureFunc();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Cone Functions")
+		void TestImplementableFunc(int32 Val);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Cone Functions")
+	void Explode();
+	void Explode_Implementation();
+
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 };

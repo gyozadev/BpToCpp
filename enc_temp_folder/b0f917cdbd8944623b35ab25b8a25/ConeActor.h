@@ -24,7 +24,8 @@ protected:
 		UStaticMeshComponent* ConeMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ConeActor")
-		bool bIsUp;
+		uint8 bIsUp:1;
+
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ConeActor")
 		float MinHeight;
@@ -45,8 +46,16 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
+
+
 public:	
+
+	UFUNCTION(BlueprintCallable, Category = "Cone Functions")
+		void TestFunc(int32 Val);
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 };
